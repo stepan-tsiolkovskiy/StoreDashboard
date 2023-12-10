@@ -1,6 +1,9 @@
 import { colors } from "@mui/material";
 
 const colorConfigs = {
+  homepage: {
+    bg: "#fff",
+  },
   sidebar: {
     bg: "#233044",
     color: "#eeeeee",
