@@ -12,28 +12,28 @@ export type DataType = {
   homeGoods: ProductType[];
   clothing: ProductType[];
 };
-/*
-export interface DailySalesFigure {
-  id: number, 
-  date: string, 
-  productCategory: string, 
-  revenue: number, 
-  unitsSold: number, 
-  profitMargin: number 
+
+export interface TableDataType {
+  id: number;
+  date: string;
+  productCategory: string;
+  revenue: number;
+  unitsSold: number;
+  profitMargin: number;
+}
+
+export enum TableColumns {
+  DATE = "Date",
+  PRODUCT = 'Product Type',
+  REVENUE = 'Revenue',
+  UNITS = 'Units Sold',
+  PROFIT = 'Profit Margins'
 }
 
 export enum ProductCategory {
   Electronics = 'Electronics',
   Clothing = 'Clothing',
   HomeGoods = 'Home Goods',
-}
-
-export enum DataFields {
-  DATE = "Date",
-  PRODUCT = 'Product Type',
-  REVENUE = 'Revenue',
-  UNITS = 'Units Sold',
-  PROFIT = 'Profit Margins'
 }
 
 export enum FilterByProductType {
@@ -48,4 +48,18 @@ export enum SortByValue {
   REVENUE = 'revenue',
   UNITS_SOLD = 'units sold',
   PROFIT_MARGINS = 'profit margins',
-}*/
+}
+/*
+export interface DailySalesFigure {
+  id: number, 
+  date: string, 
+  productCategory: string, 
+  revenue: number, 
+  unitsSold: number, 
+  profitMargin: number 
+}
+
+
+
+*/
+

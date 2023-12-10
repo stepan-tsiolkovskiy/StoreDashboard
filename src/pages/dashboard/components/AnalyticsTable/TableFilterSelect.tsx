@@ -1,31 +1,43 @@
-import React from 'react'
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { Dispatch, FC, SetStateAction } from 'react';
+import { FilterByProductType } from '../../../../types';
 
-export const TableFilterSelect = () => {
-  const [age, setAge] = React.useState('');
+type FilterSelectorProps = {
+  filterValue: FilterByProductType,
+  onChange: Dispatch<SetStateAction<FilterByProductType>>
+}
+
+export const TableFilterSelect: FC<FilterSelectorProps> = (props) => {
+  const { filterValue, onChange } = props;
 
   const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value as string);
+    onChange(event.target.value as FilterByProductType);
   };
 
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+        <InputLabel id="demo-simple-select-label">Filter by product type</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={age}
-          label="Age"
+          value={filterValue}
+          label="Product"
           onChange={handleChange}
         >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value={FilterByProductType.ELECTRONICS}>
+            {FilterByProductType.ELECTRONICS}
+            </MenuItem>
+          <MenuItem value={FilterByProductType.HOMEGOODS}>
+            {FilterByProductType.HOMEGOODS}
+            </MenuItem>
+          <MenuItem value={FilterByProductType.CLOTHING}>
+            {FilterByProductType.CLOTHING}
+            </MenuItem>
         </Select>
       </FormControl>
     </Box>
