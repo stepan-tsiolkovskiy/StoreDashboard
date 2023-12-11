@@ -9,11 +9,13 @@ import {
   Legend
 } from "recharts";
 import { CombinedDateType, ProductCategory } from "../../../../types";
+import colorConfigs from "../../../../configs/colorConfigs";
+import sizeConfigs from "../../../../configs/sizeConfigs";
 
 export const lineConfig = [
-  { category: ProductCategory.Electronics, color: "#82ca9d" },
-  { category: ProductCategory.Clothing, color: "#8884d8" },
-  { category: ProductCategory.HomeGoods, color: "#ffc658" },
+  { category: ProductCategory.Electronics, color: colorConfigs.charts.colors.electronics },
+  { category: ProductCategory.Clothing, color: colorConfigs.charts.colors.clothings },
+  { category: ProductCategory.HomeGoods, color: colorConfigs.charts.colors.homeGoods },
 ];
 
 type ChartLineProps = {
@@ -29,8 +31,8 @@ export const ChartLine: React.FC<ChartLineProps> = (props) => {
 
   return (
     <LineChart
-      width={600}
-      height={300}
+      width={700}
+      height={sizeConfigs.charts.line.height}
       data={data}
       margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
     >

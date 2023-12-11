@@ -38,12 +38,12 @@ const combineDataForPieChart = (
       value: countUnitsSoldSum(electronics),
     },
     {
-      name: "homeGoods",
-      value: countUnitsSoldSum(homeGoods),
-    },
-    {
       name: "clothing",
       value: countUnitsSoldSum(clothing),
+    },
+    {
+      name: "homeGoods",
+      value: countUnitsSoldSum(homeGoods),
     },
   ];
 };
@@ -104,7 +104,7 @@ export const Charts: FC<ChartsProps> = (props) => {
   return (
     <Box>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={7}>
+        <Grid item xs={12} md={8}>
           <Card>
             <CardContent>
               <ChartLine
@@ -115,7 +115,7 @@ export const Charts: FC<ChartsProps> = (props) => {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={12} md={5}>
+        <Grid item xs={12} md={4}>
           <Card>
             <CardContent sx={{ display: "flex", justifyContent: 'center'}}>
               <ChartPie 

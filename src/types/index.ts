@@ -67,17 +67,3 @@ export type CombinedDateType = {
   homegoodsData: number;
   clothingData: number;
 }
-/*
-export interface DailySalesFigure {
-  id: number, 
-  date: string, 
-  productCategory: string, 
-  revenue: number, 
-  unitsSold: number, 
-  profitMargin: number 
-}
-
-
-
-*/
-

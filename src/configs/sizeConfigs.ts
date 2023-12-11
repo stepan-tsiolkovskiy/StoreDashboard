@@ -4,6 +4,17 @@ const sizeConfigs = {
   },
   sidebar: {
     width: "300px"
+  },
+  charts: {
+    line: {
+      width: 800,
+      height: 300
+    },
+    pie: {
+      width: 300,
+      height: 300,
+      radius: 130
+    } 
   }
 }
 

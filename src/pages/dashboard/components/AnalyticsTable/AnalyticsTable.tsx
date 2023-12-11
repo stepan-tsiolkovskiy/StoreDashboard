@@ -114,40 +114,41 @@ export const AnaliticsTable: FC<SalesTableProps> = (props) => {
 
   return (
     <>
-      {isLoading ? (
-        <h2>Loading....</h2>
-      ) : (
-        <Grid container justifyContent="center" spacing={2}>
-          <Grid item xs={12}>
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    {Cells.map((cell) => (
-                      <TableCell key={cell.id} align={getAlignValue(cell.align)}>
-                        {cell.value}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {rows.map((row) => (
-                    <Fragment key={row.id}>
-                      <TableRow>
-                        {Cells.map((cell) => (
-                          <TableCell key={`${row.id}-${cell.id}`} align={getAlignValue(cell.align)}>
-                            {row[cell.id as keyof ProductType]}
-                          </TableCell>
-                        ))}
-                      </TableRow>
-                    </Fragment>
+      <Grid container justifyContent="center" spacing={2}>
+        <Grid item xs={12}>
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  {Cells.map((cell) => (
+                    <TableCell key={cell.id} align={getAlignValue(cell.align)}>
+                      {cell.value}
+                    </TableCell>
                   ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Grid>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {isLoading 
+                  ? <h2>Loading....</h2>
+                  : (
+                    rows.map((row) => (
+                      <Fragment key={row.id}>
+                        <TableRow>
+                          {Cells.map((cell) => (
+                            <TableCell key={`${row.id}-${cell.id}`} align={getAlignValue(cell.align)}>
+                              {row[cell.id as keyof ProductType]}
+                            </TableCell>
+                          ))}
+                        </TableRow>
+                      </Fragment>
+                    ))
+                  )
+                }
+              </TableBody>
+            </Table>
+          </TableContainer>
         </Grid>
-      )}
+      </Grid>
     </>
   );
 };

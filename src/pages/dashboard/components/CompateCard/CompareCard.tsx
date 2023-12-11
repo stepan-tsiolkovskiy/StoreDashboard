@@ -56,7 +56,7 @@ export const CompareCard: FC<MultiTypeSelectorProps> = (props) => {
   }
 
   const clearCategories = () => {
-    setSelectedCategoriesToCompare([]); // Reset selected categories to an empty array
+    setSelectedCategoriesToCompare([]);
   };
 
   return (

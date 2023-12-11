@@ -14,6 +14,13 @@ const colorConfigs = {
     bg: "#fff",
     color: "#000"
   },
+  charts: {
+    colors: {
+      electronics: "#8884d8",
+      clothings: "#82ca9d",
+      homeGoods: "#ffc658"
+    }
+  },
   mainBg: colors.grey["100"]
 } 
 

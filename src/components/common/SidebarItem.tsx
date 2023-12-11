@@ -8,7 +8,6 @@ type Props = {
 };
 
 const SidebarItem = ({ item }: Props) => {
-
   return (
     item.sidebarProps && item.path ? (
       <ListItemButton
