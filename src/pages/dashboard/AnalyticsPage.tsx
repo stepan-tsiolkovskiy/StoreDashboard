@@ -7,17 +7,16 @@ import {
 } from "./components/AnalyticsTable";
 import { CompareCard } from "./components/CompateCard";
 import { useState } from "react";
-import { FilterByProductType, ProductType, SortByValue, TableDataType } from "../../types";
+import { FilterByProductType, SortByValue } from "../../types";
 //import { ProductCategory } from "../../types";
 
 export const AnalyticsPage = () => {
-  const [rows, setRows] = useState<TableDataType[]>([]);
   const [sortByValue, setSortByValue] = useState(SortByValue.DEFAULT);
   const [filterByProductType, setFilterByProductType] = useState(FilterByProductType.DEFAULT);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   //const [selectedCategoriesToCompare, setSelectedCategoriesToCompare] = useState<ProductCategory[]>([]);
 
-  function downloadCSV(rows: ProductType[], filename: string) {
+  /*function downloadCSV(rows: ProductType[], filename: string) {
     const csvContent = "data:text/csv;charset=utf-8," +
       rows.map(row => Object.values(row).join(",")).join("\n");
   
@@ -31,7 +30,7 @@ export const AnalyticsPage = () => {
 
   const handleDownloadCSV = () => {
     downloadCSV(rows, "table_data.csv");
-  };
+  };*/
 
   return (
     <Grid container>
@@ -62,7 +61,7 @@ export const AnalyticsPage = () => {
                 onChange={setSelectedDate}
               />
               
-              <Button variant="contained" onClick={handleDownloadCSV}>
+              <Button variant="contained">
                 Download CSV
               </Button>
             </Box>
@@ -71,8 +70,6 @@ export const AnalyticsPage = () => {
 
         <Grid item xs={12}>
           <AnaliticsTable 
-            rows={rows}
-            setRows={setRows}
             filterByProductType={filterByProductType}
             sortByValue={sortByValue}
             selectedDate={selectedDate}

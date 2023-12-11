@@ -1,4 +1,4 @@
-import { Dispatch, FC, Fragment, SetStateAction, useEffect, useState } from 'react';
+import { FC, Fragment, useEffect, useMemo, useState } from 'react';
 import { Grid, TableCellProps } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -52,8 +52,6 @@ const mapCustomToPredefinedAlignment = (align: string): TableCellProps["align"] 
 }
 
 type SalesTableProps = {
-  rows: TableDataType[];
-  setRows: Dispatch<SetStateAction<TableDataType[]>>;
   filterByProductType: FilterByProductType;
   sortByValue: SortByValue;
   selectedDate: Date | null;
@@ -61,47 +59,51 @@ type SalesTableProps = {
 
 export const AnaliticsTable: FC<SalesTableProps> = (props) => {
   const { 
-    rows,
-    setRows,
     filterByProductType,
     sortByValue,
     selectedDate
   } = props;
+  const [rows, setRows] = useState<TableDataType[]>([]);
 
-  const { products } = useAppSelector((state) => state.products);
+  const { products, loading } = useAppSelector((state) => state.products);
+  
   //data from all products type in one array
-  const processedRows = preprocessData(products);
+  const processedRows = useMemo(() => products && preprocessData(products), [products]);
+
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    const filteredData = processedRows.slice();
-    /*if (filterByProductType) {
-      filteredData = filteredData.filter((el) => el.productCategory === filterByProductType);
-    }
+    const dataFiltering = () => {
+      let filteredData = processedRows.slice();
+      if (filterByProductType) {
+        filteredData = filteredData.filter((el) => el.productCategory === filterByProductType);
+      }
+    
+      if (sortByValue === SortByValue.REVENUE) {
+        filteredData = filteredData.sort((el1, el2) => el2.revenue - el1.revenue);
+      } else if (sortByValue === SortByValue.UNITS_SOLD) {
+        filteredData = filteredData.sort((el1, el2) => el2.unitsSold - el1.unitsSold);
+      } else if (sortByValue === SortByValue.PROFIT_MARGINS) {
+        filteredData = filteredData.sort((el1, el2) => el2.profitMargin - el1.profitMargin);
+      }
+    
+      if (selectedDate) {
+        const localSelectedDate = new Date(selectedDate);
+      
+        const selectedDateComponents = localSelectedDate.toLocaleDateString('en-US');
+      
+        filteredData = filteredData.filter((el) => {
+          const dataDateComponents = new Date(el.date).toLocaleDateString('en-US');
+      
+          return dataDateComponents === selectedDateComponents;
+        });
+      }
   
-    if (sortByValue === SortByValue.REVENUE) {
-      filteredData = filteredData.sort((el1, el2) => el2.revenue - el1.revenue);
-    } else if (sortByValue === SortByValue.UNITS_SOLD) {
-      filteredData = filteredData.sort((el1, el2) => el2.unitsSold - el1.unitsSold);
-    } else if (sortByValue === SortByValue.PROFIT_MARGINS) {
-      filteredData = filteredData.sort((el1, el2) => el2.profitMargin - el1.profitMargin);
+      filteredData && setRows(filteredData);
+      setLoading(false);
     }
-  
-    if (selectedDate) {
-      const localSelectedDate = new Date(selectedDate);
-    
-      const selectedDateComponents = localSelectedDate.toLocaleDateString('en-US');
-    
-      filteredData = filteredData.filter((el) => {
-        const dataDateComponents = new Date(el.date).toLocaleDateString('en-US');
-    
-        return dataDateComponents === selectedDateComponents;
-      });
-    }*/
-
-    filteredData && setRows(filteredData);
-    setLoading(false);
-  }, [filterByProductType, sortByValue, selectedDate]);
+    !loading && processedRows && dataFiltering();
+  }, [processedRows, filterByProductType, sortByValue, selectedDate]);
 
   const getAlignValue = (align: string): TableCellProps["align"] => {
     return mapCustomToPredefinedAlignment(align);
