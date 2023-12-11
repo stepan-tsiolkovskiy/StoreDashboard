@@ -49,6 +49,24 @@ export enum SortByValue {
   UNITS_SOLD = 'units sold',
   PROFIT_MARGINS = 'profit margins',
 }
+
+export enum ChartMetrics {
+  UNITS_SOLD = "unitsSold",
+  REVENUE = "revenue",
+  PROFIT_MARGINS = "profitMargin",
+}
+
+export type ChartPieDataType = {
+  name: string,
+  value: number
+}
+
+export type CombinedDateType = {
+  date: string;
+  electronicsData: number;
+  homegoodsData: number;
+  clothingData: number;
+}
 /*
 export interface DailySalesFigure {
   id: number, 

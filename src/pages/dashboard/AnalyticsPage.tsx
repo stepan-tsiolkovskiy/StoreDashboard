@@ -7,14 +7,15 @@ import {
 } from "./components/AnalyticsTable";
 import { CompareCard } from "./components/CompateCard";
 import { useState } from "react";
-import { FilterByProductType, SortByValue } from "../../types";
+import { FilterByProductType, ProductCategory, SortByValue } from "../../types";
+import { Charts } from "./components/AnalyticsCharts";
 //import { ProductCategory } from "../../types";
 
 export const AnalyticsPage = () => {
   const [sortByValue, setSortByValue] = useState(SortByValue.DEFAULT);
   const [filterByProductType, setFilterByProductType] = useState(FilterByProductType.DEFAULT);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  //const [selectedCategoriesToCompare, setSelectedCategoriesToCompare] = useState<ProductCategory[]>([]);
+  const [selectedCategoriesToCompare, setSelectedCategoriesToCompare] = useState<ProductCategory[]>([]);
 
   /*function downloadCSV(rows: ProductType[], filename: string) {
     const csvContent = "data:text/csv;charset=utf-8," +
@@ -34,8 +35,17 @@ export const AnalyticsPage = () => {
 
   return (
     <Grid container>
+      <Grid sx={{ marginBottom: "20px"}}>
+        <Charts 
+          selectedCategoriesToCompare={selectedCategoriesToCompare}
+        />
+      </Grid>
+      
       <Grid item xs={12} lg={3} sx={{ marginBottom: "20px"}}>
-        <CompareCard />
+        <CompareCard 
+          selectedCategoriesToCompare={selectedCategoriesToCompare}
+          setSelectedCategoriesToCompare={setSelectedCategoriesToCompare}
+        />
       </Grid>
 
       <Grid container spacing={2}>

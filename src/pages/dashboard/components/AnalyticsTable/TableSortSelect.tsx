@@ -19,7 +19,7 @@ export const TableSortSelect: FC<SortSelectorProps> = (props) => {
   };
 
   return (
-    <Box sx={{ minWidth: 120 }}>
+    <Box sx={{ width: "100%" }}>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Sort by value</InputLabel>
         <Select
