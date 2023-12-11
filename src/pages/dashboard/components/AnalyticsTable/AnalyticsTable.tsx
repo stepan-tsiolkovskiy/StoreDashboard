@@ -127,23 +127,27 @@ export const AnaliticsTable: FC<SalesTableProps> = (props) => {
                   ))}
                 </TableRow>
               </TableHead>
+              
               <TableBody>
-                {isLoading 
-                  ? <h2>Loading....</h2>
-                  : (
-                    rows.map((row) => (
-                      <Fragment key={row.id}>
-                        <TableRow>
-                          {Cells.map((cell) => (
-                            <TableCell key={`${row.id}-${cell.id}`} align={getAlignValue(cell.align)}>
-                              {row[cell.id as keyof ProductType]}
-                            </TableCell>
-                          ))}
-                        </TableRow>
-                      </Fragment>
-                    ))
-                  )
-                }
+                {isLoading ? (
+                  <TableRow>
+                    <TableCell colSpan={Cells.length} align="center">
+                      <h2>Loading....</h2>
+                    </TableCell>
+                  </TableRow>
+                ) : (
+                  rows.map((row) => (
+                    <Fragment key={row.id}>
+                      <TableRow>
+                        {Cells.map((cell) => (
+                          <TableCell key={`${row.id}-${cell.id}`} align={getAlignValue(cell.align)}>
+                            {row[cell.id as keyof ProductType]}
+                          </TableCell>
+                        ))}
+                      </TableRow>
+                    </Fragment>
+                  ))
+                )}
               </TableBody>
             </Table>
           </TableContainer>

@@ -24,7 +24,7 @@ export const ChartPie: React.FC<ChartPieProps> = (props) => {
   return (
     <>
       <PieChart width={sizeConfigs.charts.pie.width} height={sizeConfigs.charts.pie.height}>
-        <Legend verticalAlign="bottom" height={25}/>
+        <Legend verticalAlign="bottom" height={25} />
         <Pie
           data={data}
           dataKey="value"

@@ -8,11 +8,11 @@ const sizeConfigs = {
   charts: {
     line: {
       width: 800,
-      height: 300
+      height: 330
     },
     pie: {
-      width: 300,
-      height: 300,
+      width: 330,
+      height: 330,
       radius: 130
     } 
   }

@@ -44,7 +44,6 @@ export const ChartLine: React.FC<ChartLineProps> = (props) => {
 
       {filteredLineConfig.map(config => {
         const categoryDataKey = `${config.category.toLowerCase()}Data`.replace(/\s+/g, '') as keyof CombinedDateType;
-
           return (
             <Line
               key={config.category}
