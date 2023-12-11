@@ -104,7 +104,7 @@ export const Charts: FC<ChartsProps> = (props) => {
   return (
     <Box>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={7}>
           <Card>
             <CardContent>
               <ChartLine
@@ -115,9 +115,9 @@ export const Charts: FC<ChartsProps> = (props) => {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={5}>
           <Card>
-            <CardContent>
+            <CardContent sx={{ display: "flex", justifyContent: 'center'}}>
               <ChartPie 
                 data={combineDataChartPie} 
               />

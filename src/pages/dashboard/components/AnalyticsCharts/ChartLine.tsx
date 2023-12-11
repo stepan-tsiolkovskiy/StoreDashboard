@@ -29,8 +29,8 @@ export const ChartLine: React.FC<ChartLineProps> = (props) => {
 
   return (
     <LineChart
-      width={680}
-      height={400}
+      width={600}
+      height={300}
       data={data}
       margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
     >

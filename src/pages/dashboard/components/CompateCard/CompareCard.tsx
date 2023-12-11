@@ -60,14 +60,14 @@ export const CompareCard: FC<MultiTypeSelectorProps> = (props) => {
   };
 
   return (
-    <Card sx={{ minWidth: 275, padding: "20px 50px" }}>
+    <Card sx={{ minWidth: 275, padding: "10px 50px" }}>
       <CardContent 
         sx={{ 
           display: "flex", 
           flexDirection: "column", 
           justifyContent: "center", 
           alignItems: "center", 
-          gap: "20px" 
+          gap: "10px" 
         }}>
         <Typography variant="h5" component="div">
           Select Categories to Compare

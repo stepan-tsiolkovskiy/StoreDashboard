@@ -17,14 +17,14 @@ export const ChartPie: React.FC<ChartPieProps> = (props) => {
 
   return (
     <>
-      <PieChart width={680} height={400}>
+      <PieChart width={400} height={300}>
         <Legend verticalAlign="bottom" height={36} />
         <Pie
           data={data}
           dataKey="value"
           cx="50%"
           cy="50%"
-          outerRadius={180}
+          outerRadius={130}
           label
         >
           {data.map((_entry, index) => (

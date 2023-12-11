@@ -1,4 +1,4 @@
-import { FC, Fragment, useEffect, useMemo, useState } from 'react';
+import { Dispatch, FC, Fragment, SetStateAction, useEffect, useMemo, useState } from 'react';
 import { Grid, TableCellProps } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -52,6 +52,8 @@ const mapCustomToPredefinedAlignment = (align: string): TableCellProps["align"] 
 }
 
 type SalesTableProps = {
+  rows: TableDataType[]
+  setRows: Dispatch<SetStateAction<TableDataType[]>>;
   filterByProductType: FilterByProductType;
   sortByValue: SortByValue;
   selectedDate: Date | null;
@@ -59,11 +61,12 @@ type SalesTableProps = {
 
 export const AnaliticsTable: FC<SalesTableProps> = (props) => {
   const { 
+    rows,
+    setRows,
     filterByProductType,
     sortByValue,
-    selectedDate
+    selectedDate,
   } = props;
-  const [rows, setRows] = useState<TableDataType[]>([]);
 
   const { products, loading } = useAppSelector((state) => state.products);
   
